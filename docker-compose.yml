@@ -1,0 +1,118 @@
+# version: "3"
+# services:
+#   nodeapp:
+#     container_name: blogs_app
+#     restart: always
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     env_file: .env
+#     ports:
+#       - "5555:5555"
+#     links:
+#       - mongodb
+#     depends_on:
+#       - mongodb
+#     environment:
+#       WAIT_HOSTS: mongodb:27017
+#     networks:
+#       - node-mongo-network
+#   mongodb:
+#     container_name: mongodb
+#     image: mongo:6.0
+#     volumes:
+#       - ~/mongo:/data/db
+#     ports:
+#       - "27017:27017"
+#     environment:
+#       - MONGO_INITDB_DATABASE=posts
+#     networks:
+#       - node-mongo-network
+# networks:
+#   node-mongo-network:
+#     driver: bridge
+
+version: "3"
+services:
+  content-service:
+    build:
+      context: ./content-service
+    container_name: content-service
+    environment:
+      DATABASE_URL: mongodb://content-db:27017/content
+    depends_on:
+      - content-db
+    networks:
+      - mynetwork
+
+  user-service:
+    build:
+      context: ./user-service
+    container_name: user-service
+    environment:
+      DATABASE_URL: mongodb://user-db:27017/user
+    depends_on:
+      - user-db
+    networks:
+      - mynetwork
+
+  interaction-service:
+    build:
+      context: ./interaction-service
+    container_name: interaction-service
+    environment:
+      DATABASE_URL: mongodb://interaction-db:27017/interaction
+    depends_on:
+      - interaction-db
+    networks:
+      - mynetwork
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - content-service
+      - user-service
+      - interaction-service
+    networks:
+      - mynetwork
+
+  content-db:
+    image: mongo:latest
+    container_name: content-db
+    ports:
+      - "27020:27017"
+    volumes:
+      - content-data:/data/db
+    networks:
+      - mynetwork
+
+  user-db:
+    image: mongo:latest
+    container_name: user-db
+    ports:
+      - "27018:27017"
+    volumes:
+      - user-data:/data/db
+    networks:
+      - mynetwork
+
+  interaction-db:
+    image: mongo:latest
+    container_name: interaction-db
+    ports:
+      - "27019:27017"
+    volumes:
+      - interaction-data:/data/db
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
+volumes:
+  content-data:
+  user-data:
+  interaction-data:

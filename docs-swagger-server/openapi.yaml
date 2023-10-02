@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: books_microservice
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8000'
+paths:
+  /api/v1/content/ingest:
+    post:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/content/ingest'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/content:
+    post:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/content'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: sports
+                story: description 
+                user_id: 6519495e851f1b1679263117
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/content/6511b3800ce25039e9ea78a3:
+    get:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/content/6511b3800ce25039e9ea78a3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/user/6511b3800ce25039e9ea78a3:
+    put:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/user/6511b3800ce25039e9ea78a3'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                first_name: john
+                last_name: mkas
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/content/64c15a02a104d3f53c19b6c0:
+    delete:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/content/64c15a02a104d3f53c19b6c0'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/content/new:
+    get:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/content/new'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/content/top:
+    get:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/content/top'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/interaction/6512eda8970a63c9175f6a9933:
+    get:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/interaction/6512eda8970a63c9175f6a9933'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/interaction:
+    post:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/interaction'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                user_id: 65192e8e01b85552f733141d
+                content_id: 65192f6489a3bb8d29f8820f
+                event: like
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/user:
+    post:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/user'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                first_name: john
+                last_name: de
+                email: abc@gmail.com
+                phone_number: 473743
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/user/6519495e851f1b1679263117:
+    get:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/user/6519495e851f1b1679263117'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/user/64c15a02a104d3f53c19b6c0:
+    delete:
+      tags:
+        - General
+      summary: 'http://localhost:8000/api/v1/user/64c15a02a104d3f53c19b6c0'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
