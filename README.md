@@ -1,10 +1,10 @@
-# books-microservice
+# Books Microservice
 
-# Download Postman Collection
+## Download Postman Collection
 
 [Download file](books_microservice.postman_collection.json)
 
-#View Docs
+## To View Docs
 
 ```
   cd docs-swagger-server/
@@ -12,9 +12,9 @@
   node server.js
 ```
 
-## Go to http://localhost:3000/api-docs  IN BROWSER
+### Go to http://localhost:3000/api-docs  in browser
 
-# Database Design
+## Database Design
 Microservice: content-Service
 Database: contentdb
 
