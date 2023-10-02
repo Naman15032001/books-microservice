@@ -47,4 +47,20 @@ Collections:
    - last_name (String)
    - email (String)
    - phone_number (String)
-  
+
+
+## HLD / Architecture of the Project 
+![IMG-0006](https://github.com/Naman15032001/books-microservice/assets/71309281/ecdebb13-e5fd-4b8d-a076-b972411ec4d7)
+
+## Running in local 
+
+### Requirements
+
+- Node.js 
+- Docker and Docker compose
+
+```
+  docker compose up --build
+```
+
+
